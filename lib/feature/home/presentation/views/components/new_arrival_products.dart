@@ -13,6 +13,7 @@ import 'section_title.dart';
 
 class NewArrivalProducts extends StatefulWidget {
   final List<ProductEntity> product;
+
   NewArrivalProducts(
     this.product, {
     super.key,
@@ -28,6 +29,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
 
   final ScrollController _scrollController = ScrollController();
   Color? color;
+  bool isShow=true;
   @override
   void initState() {
     super.initState();
@@ -43,11 +45,22 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
       // Check if the scroll has reached 70%
 
 
-        if(scrollPercentage<=4||scrollPercentage>=96) {
+        if(scrollPercentage>=14&&scrollPercentage<=15&&isShow) {
+print("object");
           setState(() {
+isShow=false;
 
         });
         }
+        else if(scrollPercentage<=13&&scrollPercentage>=12&&!isShow){
+          isShow=true;
+          setState(() {
+
+          });
+
+
+        }
+
 
 
     });
@@ -69,6 +82,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
             height: 500,
             width: MediaQuery.sizeOf(context).width,
             child: GridView.builder(
+
               controller: _scrollController,
 
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
@@ -108,7 +122,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
         Padding(
           padding: const EdgeInsets.all(25.0),
           child: Center(
-            child: Container(
+            child:isShow? Container(
               height: 40,
               width: 180,
               decoration: const BoxDecoration(
@@ -125,7 +139,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                       ),
                 ),
               ),
-            ),
+            ):SizedBox(),
           ),
         ),
       ],

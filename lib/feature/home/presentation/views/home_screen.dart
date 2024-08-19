@@ -87,10 +87,20 @@ class CategoriesBlocConsumer extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocConsumer<CategoryCubit, CategoryState>(
       listener: (context, state) {
-        // TODO: implement listener
+
       },
       builder: (context, state) {
-        return Categories();
+    if(state is CategorySuccess)
+   {
+
+
+     return  Categories(state.category);}
+    else if(state is CategoryFailure)
+    {
+      return Text(state.error);
+    }
+    else
+      return CircularProgressIndicator();
       },
     );
   }

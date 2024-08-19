@@ -1,16 +1,17 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop/feature/home/domain/entities/category_entity/category_entity.dart';
 
 import '../../../../../constants.dart';
 import '../../../../../models/Category.dart';
 
-
-
-
 class Categories extends StatelessWidget {
-  const Categories({
-    Key? key,
-  }) : super(key: key);
+  final List<CategoryEntity> category;
+  const Categories(
+    this.category, {
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +19,10 @@ class Categories extends StatelessWidget {
       height: 84,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        itemCount: demo_categories.length,
+        itemCount: category.length,
         itemBuilder: (context, index) => CategoryCard(
-
-          icon: demo_categories[index].icon,
-          title: demo_categories[index].title,
+          image: category[index].categoryImage,
+          title: category[index].categoryName,
           press: () {},
         ),
         separatorBuilder: (context, index) =>
@@ -34,17 +34,18 @@ class Categories extends StatelessWidget {
 
 class CategoryCard extends StatelessWidget {
   const CategoryCard({
-    Key? key,
-    required this.icon,
+    super.key,
+    required this.image,
     required this.title,
     required this.press,
-  }) : super(key: key);
+  });
 
-  final String icon, title;
+  final String image, title;
   final VoidCallback press;
 
   @override
   Widget build(BuildContext context) {
+    print(image);
     return OutlinedButton(
       onPressed: press,
       style: OutlinedButton.styleFrom(
@@ -57,7 +58,20 @@ class CategoryCard extends StatelessWidget {
             vertical: defaultPadding / 2, horizontal: defaultPadding / 4),
         child: Column(
           children: [
-            SvgPicture.asset(icon),
+            SizedBox(
+                width: 45,
+                height: 40,
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+
+                  child: CachedNetworkImage(
+
+                    fit: BoxFit.cover,
+                    imageUrl: image,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),),
             const SizedBox(height: defaultPadding / 2),
             Text(
               title,

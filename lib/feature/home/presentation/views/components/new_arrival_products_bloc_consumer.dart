@@ -17,7 +17,7 @@ class NewArrivalProductsBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         if(state is ProductSuccess)
         {
-          return  NewArrivalProducts(state.product);}
+          return  NewArrivalProducts(state.product.reversed.toList());}
         else if (state is ProductFailure)
         {
           return Text(state.error);
