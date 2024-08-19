@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
+import 'package:shop/feature/home/domain/use_cases/fetch_category_use_case.dart';
+import 'package:shop/feature/home/presentation/manager/catogory_cubit/category_cubit.dart';
 
 import '../../feature/home/domain/repositories/home_repo.dart';
 import '../../feature/home/domain/use_cases/fetch_product_use_case.dart';
@@ -24,7 +26,14 @@ class AppRouter {
                     ..fetchProduct()
                   ,
                 ),
-
+                BlocProvider(
+                  create: (context) =>
+                  CategoryCubit(
+                      fetchCategoryUseCase: FetchCategoryUseCase(
+                          homeRepo: getIt.get<HomeRepo>()))
+                    ..fetchProduct()
+                  ,
+                ),
               ],
               child: const HomeScreen(),
             );
