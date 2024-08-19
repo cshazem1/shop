@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../manager/product_cubit/product_cubit.dart';
+import 'new_arrival_product_shimmer.dart';
 import 'new_arrival_products.dart';
 
 class NewArrivalProductsBlocConsumer extends StatelessWidget {
@@ -15,12 +16,13 @@ class NewArrivalProductsBlocConsumer extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is ProductSuccess) {
-          return NewArrivalProducts(state.product.reversed.toList());
+          return   NewArrivalProducts(state.product);
         } else if (state is ProductFailure) {
           return Text(state.error);
         } else
-          return const CircularProgressIndicator();
+         {   return const NewArrivalProductShimmer(); }
       },
     );
   }
 }
+

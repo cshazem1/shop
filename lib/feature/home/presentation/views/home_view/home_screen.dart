@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:shop/feature/home/presentation/manager/catogory_cubit/category_cubit.dart';
-import 'package:shop/feature/home/presentation/manager/product_cubit/product_cubit.dart';
 
 import '../../../../../constants.dart';
 
-import 'components/categories.dart';
+import 'components/categories_bloc_consumer.dart';
 import 'components/new_arrival_products_bloc_consumer.dart';
 import 'components/search_form.dart';
 
-
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,10 +25,7 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(width: defaultPadding / 2),
             Text(
               "15/2 New Texas",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodySmall,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
           ],
         ),
@@ -52,8 +45,7 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text(
               "Explore",
-              style: Theme
-                  .of(context)
+              style: Theme.of(context)
                   .textTheme
                   .bodyMedium!
                   .copyWith(fontWeight: FontWeight.w500, color: Colors.black),
@@ -73,34 +65,6 @@ class HomeScreen extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-}
-
-class CategoriesBlocConsumer extends StatelessWidget {
-  const CategoriesBlocConsumer({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return BlocConsumer<CategoryCubit, CategoryState>(
-      listener: (context, state) {
-
-      },
-      builder: (context, state) {
-    if(state is CategorySuccess)
-   {
-
-
-     return  Categories(state.category);}
-    else if(state is CategoryFailure)
-    {
-      return Text(state.error);
-    }
-    else
-      return CircularProgressIndicator();
-      },
     );
   }
 }

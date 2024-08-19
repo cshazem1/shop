@@ -14,9 +14,10 @@ class CashNetworkImage extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(20),
       child: CachedNetworkImage(
+        fit: BoxFit.fill,
         imageUrl: image,
         placeholder: (context, url) => const Center(child: CircularProgressIndicator()),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
+        errorWidget: (context, url, error) => Center(child: const Icon(Icons.error)),
       ),
     );
   }

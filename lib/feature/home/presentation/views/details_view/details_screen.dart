@@ -5,14 +5,11 @@ import 'package:shop/feature/home/domain/entities/product_entity/product_entity.
 
 import '../../../../../constants.dart';
 
-import '../../../../../models/Product.dart';
-import 'components/color_dot.dart';
 
 class DetailsScreen extends StatefulWidget {
   DetailsScreen(
-      {super.key, required this.product, required this.productEntity,required this.backGroundColor});
+      {super.key, required this.productEntity,required this.backGroundColor});
 final Color backGroundColor;
-  final Product product;
   final ProductEntity productEntity;
 
   @override
@@ -30,6 +27,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
         leading: const BackButton(color: Colors.black),
         actions: [
           IconButton(
+
             onPressed: () {},
             icon: CircleAvatar(
               backgroundColor: widget.backGroundColor,
@@ -57,8 +55,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
         children: [
           SizedBox(
             height: 420,
-            child: CashNetworkImage(
-                image: widget.productEntity.productImage[indexImage]),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: CashNetworkImage(
+                  image: widget.productEntity.productImage[indexImage]),
+            ),
           ),
           const SizedBox(height: defaultPadding),
           SizedBox(

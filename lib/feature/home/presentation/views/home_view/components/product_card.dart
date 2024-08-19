@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../../constants.dart';
+import '../../../../../../core/widgets/CashNetworkImage.dart';
 
 
 class ProductCard extends StatelessWidget {
@@ -30,20 +31,9 @@ class ProductCard extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              height: 132,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                image: DecorationImage(image: NetworkImage(
-                  image,
-
-                ),fit: BoxFit.fill),
-                color: bgColor,
-                borderRadius: const BorderRadius.all(
-                    Radius.circular(defaultBorderRadius),),
-              ),
-
-            ),
+            SizedBox(
+              height: 140,
+                child: CashNetworkImage(image: image,)),
 
             const SizedBox(height: defaultPadding / 2),
             Expanded(

@@ -30,7 +30,7 @@ class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
 
   @override
   Future<List<ProductEntity>> fetchFeatureProduct([int pageNumber=0]) async {
-    var result = await apiServer.get("products/?offset=0&limit=10");
+    var result = await apiServer.get("products/");
     List<ProductEntity> products = [];
     products = productList(result);
     saveProductsData(products, kProductBox);

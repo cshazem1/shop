@@ -1,4 +1,3 @@
-import 'dart:developer';
 import 'dart:math';
 import 'dart:ui';
 
@@ -7,15 +6,13 @@ import 'package:shop/feature/home/domain/entities/product_entity/product_entity.
 
 import '../../../../../../constants.dart';
 
-import '../../../../../../models/Product.dart';
 import '../../details_view/details_screen.dart';
 import 'product_card.dart';
-import 'section_title.dart';
 
 class NewArrivalProducts extends StatefulWidget {
   final List<ProductEntity> product;
 
-  NewArrivalProducts(
+  const NewArrivalProducts(
     this.product, {
     super.key,
   });
@@ -103,7 +100,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
                           context,
                           MaterialPageRoute(
                             builder: (context) => DetailsScreen(
-                              product: demo_product[index % 4],
+
                               productEntity: widget.product[index],
                               backGroundColor: color,
                             ),
