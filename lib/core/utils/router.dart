@@ -8,17 +8,30 @@ import '../../feature/home/presentation/manager/product_cubit/product_cubit.dart
 import '../../feature/home/presentation/views/home_screen.dart';
 import 'function/serverLocated.dart';
 
-class AppRouter{
- static final  router = GoRouter(
-    routes: <RouteBase>[
-      GoRoute(
-        path: '/',
-        builder: (BuildContext context, GoRouterState state) {
-          return const HomeScreen();
-        },
+class AppRouter {
+  static final router = GoRouter(
+      routes: <RouteBase>[
+        GoRoute(
+          path: '/',
+          builder: (BuildContext context, GoRouterState state) {
+            return MultiBlocProvider(
+              providers: [
+                BlocProvider(
+                  create: (context) =>
+                  ProductCubit(
+                      fetchProductUseCase: FetchProductUseCase(
+                          homeRepo: getIt.get<HomeRepo>()))
+                    ..fetchProduct()
+                  ,
+                ),
 
-  )]);
+              ],
+              child: const HomeScreen(),
+            );
+          },
 
+        )
+      ]);
 
 
 }

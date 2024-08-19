@@ -67,7 +67,8 @@ class HomeScreen extends StatelessWidget {
             ),
             const Categories(),
             const NewArrivalProductsBlocConsumer(),
-            const PopularProducts(),
+
+            /*  const PopularProducts(),*/
           ],
         ),
       ),
@@ -88,14 +89,14 @@ class NewArrivalProductsBlocConsumer extends StatelessWidget {
       builder: (context, state) {
         if(state is ProductSuccess)
           {
-        return const NewArrivalProducts();}
+        return  NewArrivalProducts(state.product);}
         else if (state is ProductFailure)
           {
             return Text(state.error);
 
           }
         else
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
       },
     );
   }

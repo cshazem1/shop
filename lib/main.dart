@@ -39,36 +39,23 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MultiBlocProvider(
-      providers: [
-        BlocProvider(
-          create: (context) =>
-          ProductCubit(
-              fetchProductUseCase: FetchProductUseCase(
-                  homeRepo: getIt.get<HomeRepo>()))
-            ..fetchProduct()
-          ,
+    return MaterialApp.router(
+      routerConfig: AppRouter.router,
+      debugShowCheckedModeBanner: false,
+      title: 'The Flutter Way',
+      theme: ThemeData(
+        scaffoldBackgroundColor: bgColor,
+        primarySwatch: Colors.blue,
+        fontFamily: "Gordita",
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
         ),
-
-      ],
-      child: MaterialApp.router(
-        routerConfig: AppRouter.router,
-        debugShowCheckedModeBanner: false,
-        title: 'The Flutter Way',
-        theme: ThemeData(
-          scaffoldBackgroundColor: bgColor,
-          primarySwatch: Colors.blue,
-          fontFamily: "Gordita",
-          appBarTheme: const AppBarTheme(
-            backgroundColor: Colors.transparent,
-            elevation: 0,
-          ),
-          textTheme: const TextTheme(
-            bodyMedium: TextStyle(color: Colors.black54),
-          ),
+        textTheme: const TextTheme(
+          bodyMedium: TextStyle(color: Colors.black54),
         ),
-
       ),
+
     );
   }
 }

@@ -24,39 +24,40 @@ class ProductCard extends StatelessWidget {
       child: Container(
         width: 154,
         padding: const EdgeInsets.all(defaultPadding / 2),
-        decoration: const BoxDecoration(
-          color: Colors.white,
+        decoration:  BoxDecoration(
+          color: bgColor,
           borderRadius: BorderRadius.all(Radius.circular(defaultBorderRadius)),
         ),
         child: Column(
           children: [
             Container(
+              height: 132,
               width: double.infinity,
               decoration: BoxDecoration(
+                image: DecorationImage(image: NetworkImage(
+                  image,
+
+                ),fit: BoxFit.fill),
                 color: bgColor,
                 borderRadius: const BorderRadius.all(
-                    Radius.circular(defaultBorderRadius)),
+                    Radius.circular(defaultBorderRadius),),
               ),
-              child: Image.asset(
-                image,
-                height: 132,
+
+            ),
+
+            const SizedBox(height: defaultPadding / 2),
+            Expanded(
+              child: Text(
+                title,
+                style: const TextStyle(color: Colors.black),
+                overflow: TextOverflow.ellipsis,
+                maxLines: 2,
               ),
             ),
-            const SizedBox(height: defaultPadding / 2),
-            Row(
-              children: [
-                Expanded(
-                  child: Text(
-                    title,
-                    style: const TextStyle(color: Colors.black),
-                  ),
-                ),
-                const SizedBox(width: defaultPadding / 4),
-                Text(
-                  "\$" + price.toString(),
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ),
-              ],
+            const SizedBox(width: defaultPadding / 4),
+            Text(
+              "\$" + price.toString(),
+              style: Theme.of(context).textTheme.headlineSmall,
             )
           ],
         ),

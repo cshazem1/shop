@@ -12,7 +12,7 @@ class SectionTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(
           title,
@@ -24,7 +24,7 @@ class SectionTitle extends StatelessWidget {
         TextButton(
           onPressed: pressSeeAll,
           child: const Text(
-            "See All",
+            "",
             style: TextStyle(color: Colors.black54),
           ),
         )
