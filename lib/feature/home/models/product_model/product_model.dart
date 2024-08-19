@@ -1,6 +1,6 @@
 import 'package:shop/feature/home/domain/entities/product_entity/product_entity.dart';
 
-import '../categories_model/Category.dart';
+import '../categories_model/category.dart';
 
 class ProductModel extends ProductEntity {
   ProductModel({
