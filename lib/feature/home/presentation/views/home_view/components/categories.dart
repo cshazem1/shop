@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/feature/home/domain/entities/category_entity/category_entity.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../models/Category.dart';
+import '../../../../../../constants.dart';
+
 
 class Categories extends StatelessWidget {
   final List<CategoryEntity> category;
@@ -45,7 +45,6 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(image);
     return OutlinedButton(
       onPressed: press,
       style: OutlinedButton.styleFrom(

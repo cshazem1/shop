@@ -5,9 +5,10 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:shop/feature/home/domain/entities/product_entity/product_entity.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../models/Product.dart';
-import '../../../../details/presentation/details_screen.dart';
+import '../../../../../../constants.dart';
+
+import '../../../../../../models/Product.dart';
+import '../../details_view/details_screen.dart';
 import 'product_card.dart';
 import 'section_title.dart';
 
@@ -29,7 +30,7 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
 
   final ScrollController _scrollController = ScrollController();
   Color? color;
-  bool isShow=true;
+  bool isShow = true;
   @override
   void initState() {
     super.initState();
@@ -43,26 +44,18 @@ class _NewArrivalProductsState extends State<NewArrivalProducts> {
       double scrollPercentage = (currentScrollPosition / maxScrollExtent) * 100;
 
       // Check if the scroll has reached 70%
-
-
-        if(scrollPercentage>=14&&scrollPercentage<=15&&isShow) {
-print("object");
-          setState(() {
-isShow=false;
-
+      print(scrollPercentage);
+      if (scrollPercentage >= 14 && scrollPercentage <= 15 && isShow ||
+          scrollPercentage == 100 && isShow) {
+        setState(() {
+          isShow = false;
         });
-        }
-        else if(scrollPercentage<=13&&scrollPercentage>=12&&!isShow){
-          isShow=true;
-          setState(() {
+      } else if (scrollPercentage <= 13 && scrollPercentage >= 12 && !isShow ||
+          scrollPercentage == 0 && !isShow) {
+        isShow = true;
 
-          });
-
-
-        }
-
-
-
+        setState(() {});
+      }
     });
   }
 
@@ -82,35 +75,38 @@ isShow=false;
             height: 500,
             width: MediaQuery.sizeOf(context).width,
             child: GridView.builder(
-
               controller: _scrollController,
-
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
-                  childAspectRatio: .9,
+                  childAspectRatio: .75,
                   crossAxisSpacing: 5,
                   mainAxisSpacing: 15),
               scrollDirection: Axis.vertical,
               itemCount: widget.product.length,
               itemBuilder: (context, index) {
+                Color color = Color.fromARGB(
+                  200,
+                  random.nextInt(256),
+                  random.nextInt(256),
+                  random.nextInt(256),
+                );
                 return Padding(
                   padding: const EdgeInsets.only(right: defaultPadding),
                   child: ProductCard(
                     title: widget.product[index].productTitle,
                     image: widget.product[index].productImage[0],
-                    price: int.parse(widget.product[index].productPrice.toString()),
-                    bgColor: Color.fromARGB(
-                      200,
-                      random.nextInt(256),
-                      random.nextInt(256),
-                      random.nextInt(256),
-                    ),
+                    price: int.parse(
+                        widget.product[index].productPrice.toString()),
+                    bgColor: color,
                     press: () {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>
-                                DetailsScreen(product: demo_product[index]),
+                            builder: (context) => DetailsScreen(
+                              product: demo_product[index % 4],
+                              productEntity: widget.product[index],
+                              backGroundColor: color,
+                            ),
                           ));
                     },
                   ),
@@ -122,24 +118,26 @@ isShow=false;
         Padding(
           padding: const EdgeInsets.all(25.0),
           child: Center(
-            child:isShow? Container(
-              height: 40,
-              width: 180,
-              decoration: const BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.only(
-                      bottomLeft: Radius.circular(16),
-                      bottomRight: Radius.circular(16))),
-              child: Center(
-                child: Text(
-                  "New Arrival",
-                  style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                        color: Colors.black,
-                        fontWeight: FontWeight.w500,
+            child: isShow
+                ? Container(
+                    height: 40,
+                    width: 180,
+                    decoration: const BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(16),
+                            bottomRight: Radius.circular(16))),
+                    child: Center(
+                      child: Text(
+                        "New Arrival",
+                        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                              color: Colors.black,
+                              fontWeight: FontWeight.w500,
+                            ),
                       ),
-                ),
-              ),
-            ):SizedBox(),
+                    ),
+                  )
+                : SizedBox(),
           ),
         ),
       ],

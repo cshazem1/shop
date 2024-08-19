@@ -7,7 +7,7 @@ import 'package:shop/feature/home/presentation/manager/catogory_cubit/category_c
 import '../../feature/home/domain/repositories/home_repo.dart';
 import '../../feature/home/domain/use_cases/fetch_product_use_case.dart';
 import '../../feature/home/presentation/manager/product_cubit/product_cubit.dart';
-import '../../feature/home/presentation/views/home_screen.dart';
+import '../../feature/home/presentation/views/home_view/home_screen.dart';
 import 'function/serverLocated.dart';
 
 class AppRouter {

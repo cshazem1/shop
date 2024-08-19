@@ -4,11 +4,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:shop/feature/home/presentation/manager/catogory_cubit/category_cubit.dart';
 import 'package:shop/feature/home/presentation/manager/product_cubit/product_cubit.dart';
 
-import '../../../../constants.dart';
+import '../../../../../constants.dart';
+
 import 'components/categories.dart';
-import 'components/new_arrival_products.dart';
 import 'components/new_arrival_products_bloc_consumer.dart';
-import 'components/popular_products.dart';
 import 'components/search_form.dart';
 
 

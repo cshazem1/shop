@@ -15,7 +15,7 @@ import 'package:shop/feature/home/domain/entities/product_entity/product_entity.
 import 'package:shop/feature/home/domain/repositories/home_repo.dart';
 import 'package:shop/feature/home/domain/use_cases/fetch_product_use_case.dart';
 import 'package:shop/feature/home/presentation/manager/product_cubit/product_cubit.dart';
-import 'package:shop/feature/home/presentation/views/home_screen.dart';
+import 'package:shop/feature/home/presentation/views/home_view/home_screen.dart';
 
 import 'constants.dart';
 import 'core/utils/simple_bloc_observer.dart';

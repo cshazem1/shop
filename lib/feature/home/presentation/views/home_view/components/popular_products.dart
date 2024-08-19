@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../constants.dart';
-import '../../../../../models/Product.dart';
+import '../../../../../../constants.dart';
+import '../../../../../../models/Product.dart';
+
 import 'product_card.dart';
 import 'section_title.dart';
 
