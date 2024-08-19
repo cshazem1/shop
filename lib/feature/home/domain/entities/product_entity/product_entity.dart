@@ -1,10 +1,10 @@
 class ProductEntity {
-  String title;
-  num price;
-  String description;
-  List<String> image;
+ final String title;
+final  num price;
+ final String description;
+ final List<String> image;
 
-  ProductEntity(
+ const ProductEntity(
       {required this.title,
       required this.price,
       required this.description,
