@@ -1,4 +1,5 @@
 import 'package:dartz/dartz.dart';
+import 'package:dio/dio.dart';
 import 'package:shop/core/error/failure.dart';
 import 'package:shop/feature/home/data/data_source/home_local_data_source.dart';
 import 'package:shop/feature/home/data/data_source/home_remote_data_source.dart';
@@ -22,7 +23,13 @@ class HomeRepoImpl extends HomeRepo{
       categories=await homeRemoteDataSource.fetchFeatureCategory();
       return right(categories);
     } on Exception catch (e) {
-return left(Failure());
+      if(e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      else {
+        return left(ServerFailure(e.toString()));
+      }
+
 
     }
   }
@@ -41,7 +48,13 @@ return left(Failure());
       products=await homeRemoteDataSource.fetchFeatureProduct();
       return right(products);
     } on Exception catch (e) {
-      return left(Failure());
+      if(e is DioException) {
+        return left(ServerFailure.fromDioException(e));
+      }
+      else {
+        return left(ServerFailure(e.toString()));
+      }
+
 
     }
   }

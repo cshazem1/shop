@@ -25,8 +25,8 @@ class ProductModel extends ProductEntity {
       id: json['id'],
       category:
           json['category'] != null ? Category.fromJson(json['category']) : null,
-      creationAt: json['description'],
-      description: json['images'] != null ? json['images'].cast<String>() : [],
+      creationAt: json['creationAt'],
+      description: json['description'] ,
       images: json['images'] != null ? json['images'].cast<String>() : [],
       updatedAt: json['updatedAt'],
     );

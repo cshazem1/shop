@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:shop/feature/home/presentation/manager/product_cubit/product_cubit.dart';
 
-import '../../../constants.dart';
-
+import '../../../../constants.dart';
 import 'components/categories.dart';
 import 'components/new_arrival_products.dart';
 import 'components/popular_products.dart';
 import 'components/search_form.dart';
+
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -26,7 +28,10 @@ class HomeScreen extends StatelessWidget {
             const SizedBox(width: defaultPadding / 2),
             Text(
               "15/2 New Texas",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .bodySmall,
             ),
           ],
         ),
@@ -46,7 +51,8 @@ class HomeScreen extends StatelessWidget {
           children: [
             Text(
               "Explore",
-              style: Theme.of(context)
+              style: Theme
+                  .of(context)
                   .textTheme
                   .bodyMedium!
                   .copyWith(fontWeight: FontWeight.w500, color: Colors.black),
@@ -60,11 +66,37 @@ class HomeScreen extends StatelessWidget {
               child: SearchForm(),
             ),
             const Categories(),
-            const NewArrivalProducts(),
+            const NewArrivalProductsBlocConsumer(),
             const PopularProducts(),
           ],
         ),
       ),
+    );
+  }
+}
+
+class NewArrivalProductsBlocConsumer extends StatelessWidget {
+  const NewArrivalProductsBlocConsumer({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<ProductCubit, ProductState>(
+      listener: (context, state) {
+      },
+      builder: (context, state) {
+        if(state is ProductSuccess)
+          {
+        return const NewArrivalProducts();}
+        else if (state is ProductFailure)
+          {
+            return Text(state.error);
+
+          }
+        else
+          return CircularProgressIndicator();
+      },
     );
   }
 }

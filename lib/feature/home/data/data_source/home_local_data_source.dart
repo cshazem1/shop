@@ -21,7 +21,7 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource{
 
   @override
   List<ProductEntity> fetchFeatureProduct() {
-    var box =  Hive.box<ProductEntity>(kCategoryBox);
+    var box =  Hive.box<ProductEntity>(kProductBox);
 
     return box.values.toList();
   }

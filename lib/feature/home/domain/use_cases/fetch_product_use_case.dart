@@ -9,7 +9,6 @@ final  HomeRepo homeRepo;
   FetchProductUseCase({required this.homeRepo});
   @override
   Future<Either<Failure, List<ProductEntity>>> call([int? param]) {
-    // TODO: implement call
 return  homeRepo.fetchProduct();
 
   }

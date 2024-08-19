@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 
 
-import '../../../../constants.dart';
-import '../../../../models/Product.dart';
+import '../../../../../constants.dart';
+import '../../../../../models/Product.dart';
+import '../../../../details/presentation/details_screen.dart';
 import 'product_card.dart';
 import 'section_title.dart';
 
-class PopularProducts extends StatelessWidget {
-  const PopularProducts({
+class NewArrivalProducts extends StatelessWidget {
+  const NewArrivalProducts({
     Key? key,
   }) : super(key: key);
 
@@ -18,7 +19,7 @@ class PopularProducts extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.symmetric(vertical: defaultPadding),
           child: SectionTitle(
-            title: "Popular",
+            title: "New Arrival",
             pressSeeAll: () {},
           ),
         ),
@@ -36,7 +37,14 @@ class PopularProducts extends StatelessWidget {
                   image: demo_product[index].image,
                   price: demo_product[index].price,
                   bgColor: demo_product[index].bgColor,
-                  press: () {},
+                  press: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              DetailsScreen(product: demo_product[index]),
+                        ));
+                  },
                 ),
               ),
             ),
