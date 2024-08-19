@@ -1,10 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/adapters.dart';
+import 'package:shop/feature/home/domain/entities/category_entity/category_entity.dart';
+import 'package:shop/feature/home/domain/entities/product_entity/product_entity.dart';
 import 'package:shop/feature/home/presentation/home_screen.dart';
 
 import 'constants.dart';
 
 
-void main() {
+void main() async {
+
+  await Hive.initFlutter();
+ await Hive.openBox<CategoryEntity>(kCategoryBox);
+ await Hive.openBox<ProductEntity>(kProductBox);
+
   runApp(const MyApp());
 }
 
