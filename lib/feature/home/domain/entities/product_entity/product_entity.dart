@@ -1,8 +1,20 @@
+
+import 'package:hive/hive.dart';
+part 'product_entity.g.dart';
+@HiveType(typeId: 1)
 class ProductEntity {
- final String productTitle;
-final  num productPrice;
- final String productDescription;
- final List<String> productImage;
+  @HiveField(0)
+
+  final String productTitle;
+  @HiveField(1)
+
+  final  num productPrice;
+  @HiveField(2)
+
+  final String productDescription;
+  @HiveField(3)
+
+  final List<String> productImage;
 
  const ProductEntity(
       {required this.productTitle,
