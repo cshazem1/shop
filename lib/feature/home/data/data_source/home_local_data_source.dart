@@ -21,8 +21,9 @@ class HomeLocalDataSourceImpl extends HomeLocalDataSource{
 
   @override
   List<ProductEntity> fetchFeatureProduct() {
-    // TODO: implement fetchFeatureProduct
-    throw UnimplementedError();
+    var box =  Hive.box<ProductEntity>(kCategoryBox);
+
+    return box.values.toList();
   }
 
 

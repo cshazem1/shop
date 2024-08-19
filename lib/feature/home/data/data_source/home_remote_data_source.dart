@@ -11,70 +11,49 @@ import 'package:shop/feature/home/domain/entities/product_entity/product_entity.
 import '../../../../core/utils/function/save_categories_data.dart';
 
 abstract class HomeRemoteDataSource {
-
- Future<List<ProductEntity>> fetchFeatureProduct();
- Future<List<CategoryEntity>> fetchFeatureCategory();
-
+  Future<List<ProductEntity>> fetchFeatureProduct();
+  Future<List<CategoryEntity>> fetchFeatureCategory();
 }
 
-class HomeRemoteDataSourceImpl extends HomeRemoteDataSource{
+class HomeRemoteDataSourceImpl extends HomeRemoteDataSource {
   final ApiServer apiServer;
-   HomeRemoteDataSourceImpl({required this.apiServer});
+  HomeRemoteDataSourceImpl({required this.apiServer});
   @override
   Future<List<CategoryEntity>> fetchFeatureCategory() async {
-var result= await apiServer.get("categories/");
-List<CategoryEntity>products=[];
-products=categoryList(result);
+    var result = await apiServer.get("categories/");
+    List<CategoryEntity> products = [];
+    products = categoryList(result);
 
-saveCategoriesData(products, kProductBox);
-
-return products;
-
-
-  }
-
-
-
-
-
-  @override
-  Future<List<ProductEntity>> fetchFeatureProduct() async {
-    var result= await apiServer.get("products/");
-    List<ProductEntity>products=[];
-    products=productList(result);
-    saveProductsData(products, kProductBox);
-
+    saveCategoriesData(products, kProductBox);
 
     return products;
   }
 
+  @override
+  Future<List<ProductEntity>> fetchFeatureProduct() async {
+    var result = await apiServer.get("products/");
+    List<ProductEntity> products = [];
+    products = productList(result);
+    saveProductsData(products, kProductBox);
+
+    return products;
+  }
 
   List<ProductEntity> productList(result) {
-    List<ProductEntity>productList=[];
-    for(var product in result)
-    {
-
+    List<ProductEntity> productList = [];
+    for (var product in result) {
       productList.add(ProductModel.fromJson(product));
-
-
-
     }
 
     return productList;
   }
+
   List<CategoryEntity> categoryList(result) {
-    List<CategoryEntity>productList=[];
-    for(var product in result)
-    {
-
+    List<CategoryEntity> productList = [];
+    for (var product in result) {
       productList.add(Category.fromJson(product));
-
-
-
     }
 
     return productList;
   }
-
-
 }
