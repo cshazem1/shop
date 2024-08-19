@@ -1,12 +1,12 @@
 class ProductEntity {
- final String title;
-final  num price;
- final String description;
- final List<String> image;
+ final String productTitle;
+final  num productPrice;
+ final String productDescription;
+ final List<String> productImage;
 
  const ProductEntity(
-      {required this.title,
-      required this.price,
-      required this.description,
-      required this.image});
+      {required this.productTitle,
+      required this.productPrice,
+      required this.productDescription,
+      required this.productImage});
 }
